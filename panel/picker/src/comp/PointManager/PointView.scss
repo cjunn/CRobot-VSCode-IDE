@@ -1,0 +1,42 @@
+.pointView {
+    margin-top: 3px;
+    height: 335px;
+    overflow-y: scroll;
+    border: 1px solid rgb(210, 210, 210);
+    .pointViewSelected{
+        background-color: #5487DD !important;
+    }
+    table {
+        border-collapse: collapse;
+        /* 合并相邻边框 */
+        border-spacing: 0;
+        /* 清除单元格间距 */
+        width: 100%;
+
+        /* 可选：让表格宽度撑满容器 */
+        tbody {
+            border: 0px;
+            border-spacing: 0px;
+
+            tr {
+                color: black;
+                font-size: 12px;
+                line-height: 14px;
+                cursor: pointer;
+                td {
+                    width: 100%;
+                    padding: 7px 6px;
+                    border-bottom: 1px solid rgb(210, 210, 210);
+
+                }
+                &:hover {
+                    background-color: rgb(220,220,220);
+                }
+        
+                &:active {
+                    background-color: rgb(180,180,180);
+                }
+            }
+        }
+    }
+}

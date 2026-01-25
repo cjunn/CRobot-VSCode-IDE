@@ -1,0 +1,46 @@
+.dialog {
+    position: absolute;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+    background-color: #E6E6E6;
+    left: 0;
+    top: 0;
+    z-index: 9;
+
+    .d-head {
+        text-align: center;
+        background-color: #4467AD;
+        color: #ffffff;
+        height: 14px;
+        padding: 3px;
+        font-size: 12px;
+        cursor: move;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        padding-left: 22px;
+        padding-right: 22px;
+
+        span {
+            height: 14px;
+        }
+
+        .d-close {
+            position: absolute;
+            right: 2px;
+
+            img {
+                width: 13px;
+                height: 13px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .d-body {
+        height: calc(100% - 30px);
+        position: relative;
+    }
+}

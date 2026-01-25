@@ -1,0 +1,30 @@
+.window {
+    width: 1190px;
+    height: 735px;
+    position: absolute;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    transition: left 0.05s, top 0.05s;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+    background-color: #E6E6E6;
+
+    .w_head {
+        text-align: center;
+        font-size: 15px;
+        padding: 6px;
+        background-color: #5396BA;
+        cursor: move;
+        user-select: none;
+        color: white;
+        height: 30px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .w_body {
+        height: calc(100% - 30px);
+        position: relative;
+    }
+}

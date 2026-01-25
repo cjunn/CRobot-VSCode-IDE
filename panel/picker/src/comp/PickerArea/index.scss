@@ -1,0 +1,128 @@
+.pickHeads {
+    margin: 0px;
+    padding: 0px;
+    line-height: 15px;
+    margin-top: 3px;
+    .pickHeade {
+        vertical-align: top;
+        display: inline-block;
+        margin: 0 3px 0 3px;
+    }
+}
+
+.pickBody {
+
+    .pickLine {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+
+        .pickInput {
+            display: inline-block;
+            width: 72px;
+            height: 10px;
+            font-size: 12px;
+        }
+
+        .pickIndex {
+            display: inline-block;
+            width: 15px;
+            height: 10px;
+            font-size: 12px;
+            color: black;
+        }
+
+        .pickColor {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: black;
+            border: 1px solid black;
+            position: relative;
+            top: 1px;
+        }
+    }
+
+}
+
+.pickTitle {
+    font-size: 12px;
+    color: black;
+}
+
+.pickBtnItem {
+    vertical-align: top;
+    background-color: #5477BD;
+    color: white;
+    border: transparent;
+    font-size: 12px;
+    margin: 0 5px 0 5px;
+    padding: 4px 5px 4px 5px;
+    border-radius: 2px;
+}
+
+.pickBtnItem:hover {
+    background-color: #4467AD;
+}
+
+.pickBtnItem:active {
+    background-color: #34579F;
+}
+
+.pickOpt1 {
+    margin-left: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 5px;
+    gap: 5px;
+    justify-content: flex-start;
+    white-space: nowrap;
+    /* 左对齐 */
+    .pickOptSim {
+        display: inline-block;
+        width: 35px;
+        height: 12px;
+        font-size: 13px;
+    }
+
+    .pickRest {
+        width: 20px;
+        height: 15px;
+        line-height: 5px;
+        position: relative;
+        top: 1px;
+    }
+}
+
+.pickOpt2 {
+    margin-left: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 5px;
+    gap: 5px;
+    justify-content: flex-start;
+
+    /* 左对齐 */
+    .pickTestResult {
+        font-size: 13px;
+        margin-left: 20px;
+        line-height: 15px;
+    }
+}
+
+.pickBtns {
+    margin-left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 3px;
+    margin-top: 6px;
+    justify-content: flex-start;
+    /* 左对齐 */
+}

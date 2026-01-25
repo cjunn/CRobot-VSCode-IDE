@@ -1,0 +1,237 @@
+{
+  "name": "crobot",
+  "publisher": "crobot",
+  "icon": "image/icon.png",
+  "displayName": "crobotIde",
+  "description": "crobot调试端",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.71.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "workspaceContains:main.lua",
+    "workspaceContains:main.js"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "crobot.debug.view",
+        "icon": "$(editor-layout)",
+        "title": "crobot: 打开采点器"
+      },
+      {
+        "command": "crobot.build.create",
+        "icon": "$(cloud-download)",
+        "title": "crobot: 构建apk"
+      },
+      {
+        "command": "crobot.debug.connect",
+        "icon": "$(ports-view-icon)",
+        "title": "crobot: 连接设备"
+      },
+      {
+        "command": "crobot.debug.disconnect",
+        "icon": "$(debug-disconnect)",
+        "title": "crobot: 断开设备"
+      },
+      {
+        "command": "crobot.debug.disconnects",
+        "icon": "$(debug-disconnect)",
+        "title": "crobot: 断开所有设备"
+      },
+      {
+        "command": "crobot.debug.refresh",
+        "icon": "$(refresh)",
+        "title": "crobot: 刷新列表"
+      },
+      {
+        "command": "crobot.debug.code_debugger",
+        "icon": "$(breakpoints-view-icon)",
+        "title": "crobot: 调试 F5"
+      },
+      {
+        "command": "crobot.debug.ui_debugger",
+        "icon": "$(debug-console-view-icon)",
+        "title": "crobot: UI调试 F6"
+      },
+      {
+        "command": "crobot.debug.att_debugger",
+        "icon": "$(cloud-upload)",
+        "title": "crobot: 附件上传 F7"
+      }
+    ],
+    "views": {
+      "debug": [
+        {
+          "id": "crobotDevice",
+          "name": "crobot 调试器",
+          "icon": "$(debug-disconnect)"
+        }
+      ]
+    },
+    "menus": {
+      "editor/title": [
+        {
+          "command": "crobot.build.create",
+          "group": "navigation",
+          "when": "resourceLangId == lua || resourceLangId==javascript || resourceFilename == setting.xml || resourceFilename == version.json"
+        },
+        {
+          "command": "crobot.debug.view",
+          "group": "navigation",
+          "when": "resourceLangId == lua || resourceLangId==javascript || resourceFilename == setting.xml || resourceFilename == version.json"
+        }
+      ],
+      "view/title": [
+        {
+          "when": "view == crobotDevice",
+          "command": "crobot.debug.code_debugger",
+          "group": "navigation@0"
+        },
+        {
+          "when": "view == crobotDevice",
+          "command": "crobot.debug.ui_debugger",
+          "group": "navigation@1"
+        },
+        {
+          "when": "view == crobotDevice",
+          "command": "crobot.debug.att_debugger",
+          "group": "navigation@2"
+        },
+        {
+          "when": "view == crobotDevice",
+          "command": "crobot.debug.disconnects",
+          "group": "navigation@3"
+        },
+        {
+          "when": "view == crobotDevice",
+          "command": "crobot.debug.refresh",
+          "group": "navigation@4"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "crobot.debug.connect",
+          "group": "inline",
+          "when": "view == crobotDevice && viewItem==unselect"
+        },
+        {
+          "command": "crobot.debug.disconnect",
+          "group": "inline",
+          "when": "view == crobotDevice && viewItem==selected"
+        }
+      ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "crobot配置",
+      "properties": {
+        "crobot.adbPath": {
+          "type": "string",
+          "default": "",
+          "description": "Adb组件路径(未设置则从本地加载)"
+        },
+        "crobot.apkPath": {
+          "type": "string",
+          "default": "",
+          "description": "apk软件路径(未设置则从本地加载)"
+        },
+        "crobot.compilerUrl": {
+          "type": "string",
+          "default": "",
+          "description": "编译服务器"
+        },
+        "crobot.scanPort": {
+          "type": "number",
+          "default": 15562,
+          "description": "扫描端口"
+        },
+        "crobot.rpcPort": {
+          "type": "number",
+          "default": 15563,
+          "description": "Rpc端口"
+        },
+        "crobot.filePort": {
+          "type": "number",
+          "default": 15564,
+          "description": "文件端口"
+        }
+      }
+    },
+    "breakpoints": [
+      {
+        "language": "lua"
+      },
+      {
+        "language": "javascript"
+      }
+    ],
+    "debuggers": [
+      {
+        "type": "CRobotDebugger",
+        "languages": [
+          "lua",
+          "javascript"
+        ],
+        "label": "crobot Debugger",
+        "program": "./out/debugAdapter.js",
+        "runtime": "node",
+        "initialConfigurations": [
+          {
+            "type": "CRobotDebugger",
+            "name": "CRobot Debugger Launch",
+            "request": "launch"
+          }
+        ],
+        "configurationSnippets": [
+          {
+            "label": "CRobot Debugger",
+            "body": {
+              "type": "CRobotDebugger",
+              "name": "CRobot Debugger Launch",
+              "request": "launch"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.0",
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@types/node-uuid": "^0.0.32",
+    "@types/vscode": "^1.71.0",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^8.20.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.9",
+    "await-notify": "^1.0.1",
+    "crypto": "^1.0.1",
+    "http-proxy": "^1.18.1",
+    "needle": "^3.1.0",
+    "node-uuid": "^1.4.8",
+    "sqlite3": "^5.1.7",
+    "tesseract.js": "^4.0.6",
+    "vscode-debugadapter": "^1.45.0"
+  }
+}
