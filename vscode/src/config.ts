@@ -12,7 +12,7 @@ const exitsFile =(filePath:string)=>{
 const getConfigs = (context: vscode.ExtensionContext) => {
     const debugPanel = false;
     const workDir: string = vscode.workspace.workspaceFolders?.[0].uri.fsPath || "";
-    const codeDir: string = `${workDir}${SEP}code`;
+    const codeDir: string = `${workDir}${SEP}src`;
     const attachDir: string = `${workDir}${SEP}attach`;
     const dDbFile: string = `${workDir}${SEP}attach${SEP}d_points.db`;
     const uiDir: string = `${workDir}${SEP}ui`;
