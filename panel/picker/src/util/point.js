@@ -1,4 +1,5 @@
 const parsePoints = (points) => {
+    points = [...points];
     let fX = points[0].x;
     let fY = points[0].y;
     let fColor = points[0].color;
