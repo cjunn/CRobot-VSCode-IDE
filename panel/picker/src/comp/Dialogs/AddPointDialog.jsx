@@ -114,7 +114,7 @@ export default ({ }) => {
         let previed = imageToB64(previewImage);
         let [color,feature] = parsePoints(points);
         let val = { name, fbl, dx, dy, rx, ry, type, swit, ...dirAndSim, color,feature, ...selectPickRect, date: currentDate(), previed }
-        buildFixOrSwi(val);
+        buildFixOrSwi(val,points);
         let res = await api.addPoint(val);
         toastr.info("点增加成功!");
         setAddPointVisiable(false);

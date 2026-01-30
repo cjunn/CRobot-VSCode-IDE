@@ -110,11 +110,15 @@ export async function activate(context: vscode.ExtensionContext) {
 		},
 		testPoint: async ({ id }: { id: number }) => {
 			let point = await pointManager.getPoint(id);
+			if(!point||point.type!='mul'){
+				return "type error";
+			}
 			let script = pointParse.toScript(point);
 			return await serviceApi.runScript({ script, module: "_testDots_" });
 		},
 		testPointList: async (list: { id: number }[]) => {
 			let points = await Promise.all(list.map(({id}:{id:number}) => pointManager.getPoint(id)));
+			points = points.filter(p=>p&&p.type=='mul');
 			let script = pointParse.toScript(points as Point[]);
 			return await serviceApi.runScript({ script, module: "_testDots_" });
 		},

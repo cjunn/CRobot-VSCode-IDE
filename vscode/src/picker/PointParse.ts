@@ -15,9 +15,9 @@ class JsPointParse extends PointParse {
 
     private buildMultiColor(point: Point):string{
         if(!point.exColor){
-            return `Screen.findMultiColor(${point.x1},${point.y1},${point.x2},${point.y2},"${point.color}","${point.feature}",${point.dir}, ${point.sim});`;
+            return `Findscr.findMultiColor(${point.x1},${point.y1},${point.x2},${point.y2},"${point.color}","${point.feature}",${point.dir}, ${point.sim});`;
         }else{
-            return `Screen.findComplexMultiColor(${point.x1},${point.y1},${point.x2},${point.y2},"${point.color}","${point.feature}","${point.exFeature}",${point.dir}, ${point.sim}, ${point.tolerance});`;
+            return `Findscr.findComplexMultiColor(${point.x1},${point.y1},${point.x2},${point.y2},"${point.color}","${point.feature}","${point.exFeature}",${point.dir}, ${point.sim}, ${point.tolerance});`;
         }
     }
 
