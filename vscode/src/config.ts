@@ -14,7 +14,8 @@ const getConfigs = (context: vscode.ExtensionContext) => {
     const workDir: string = vscode.workspace.workspaceFolders?.[0].uri.fsPath || "";
     const codeDir: string = `${workDir}${SEP}src`;
     const attachDir: string = `${workDir}${SEP}attach`;
-    const dDbFile: string = `${workDir}${SEP}attach${SEP}d_points.db`;
+    const dDbName = "d_points.db";
+    const dDbFile: string = `${workDir}${SEP}attach${SEP}${dDbName}`;
     const uiDir: string = `${workDir}${SEP}ui`;
     const photoDir = `${workDir}${SEP}photo`;
     const buildDir: string = `${workDir}${SEP}build`;
@@ -63,7 +64,8 @@ const getConfigs = (context: vscode.ExtensionContext) => {
         func,
         language,
         debugPanel,
-        dDbFile
+        dDbFile,
+        dDbName
     }
 }
 

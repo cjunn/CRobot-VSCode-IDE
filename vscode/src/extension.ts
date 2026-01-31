@@ -65,6 +65,13 @@ export async function activate(context: vscode.ExtensionContext) {
 		});
 	}
 
+	const pushDPointFile = async () => {
+		await withProgress("正在更新DPointFile", async (setMsg) => {
+			await fileSender.push([config.dDbName], (item) => setMsg(item));
+		});
+	}
+
+
 
 	rpcClient.regisMapping({
 		output: ({ tag, source, line, message }: { tag: string, source: string, line: number, message: string }) => {
@@ -123,7 +130,9 @@ export async function activate(context: vscode.ExtensionContext) {
 			return await serviceApi.runScript({ script, module: "_testDots_" });
 		},
 		addPoint: async (p: Point) => {
-			return await pointManager.addPoint(p);
+			await pointManager.addPoint(p);
+			await pushDPointFile();
+			return 
 		},
 		getPoint: async (id: number) => {
 			return await pointManager.getPoint(id);
@@ -132,7 +141,8 @@ export async function activate(context: vscode.ExtensionContext) {
 			return await pointManager.queryPhoto(id);
 		},
 		delPoint: async (id: number) => {
-			return await pointManager.delPoint(id);
+			await pointManager.delPoint(id);
+			await pushDPointFile();
 		},
 		queryPointList: async (p: any) => {
 			return pointManager.queryPointList(p);
